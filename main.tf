@@ -27,11 +27,11 @@ resource "azurerm_storage_account" "secure_storage" {
   shared_access_key_enabled = false
 
   # REMEDIATION: CKV2_AZURE_38 (Enable soft-delete for accidental deletion protection)
-  blob_properties {
-    delete_retention_policy {
-      days = 7
-    }
-  }
+  #blob_properties {
+  #  delete_retention_policy {
+  #    days = 7
+  #  }
+  #}
 
   # --- RISK ACCEPTANCE / CHECKOV SKIPS ---
 
