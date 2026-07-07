@@ -27,8 +27,8 @@ jobs:
         run: pip install checkov
 
       - name: Run Checkov Security Scan
-        run: checkov -d . -o sarif --output-file-path checkov-results.sarif || true
-
+        run: checkov -d . --external-checks-dir custom_policies -o sarif --output-file-path checkov-results.sarif || true
+      
       - name: Upload SARIF file to GitHub Security Tab
         uses: github/codeql-action/upload-sarif@v3
         with:
