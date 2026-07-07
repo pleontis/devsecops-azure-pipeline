@@ -24,6 +24,11 @@ resource "azurerm_storage_account" "secure_storage" {
   account_tier             = "Standard"
   account_replication_type = "GRS"
 
+  tags = {
+    Environment = "Production"
+    CostCenter  = "Dept-492"
+  }
+
   # Core Security Enforcements
   enable_https_traffic_only       = true
   min_tls_version                 = "TLS1_2"
