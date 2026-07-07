@@ -1,4 +1,4 @@
-# Remote Backend for State Locking and Security
+# ENTERPRISE UPGRADE: Remote Backend for State Locking and Security
 terraform {
   backend "azurerm" {
     resource_group_name  = "devsecops-tfstate-rg"
@@ -15,6 +15,11 @@ provider "azurerm" {
 resource "azurerm_resource_group" "example" {
   name     = "secure-rg"
   location = "East US"
+
+  tags = {
+    Environment = "Production"
+    CostCenter  = "Dept-492"
+  }
 }
 
 resource "azurerm_storage_account" "secure_storage" {
