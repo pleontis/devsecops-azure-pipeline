@@ -2,6 +2,8 @@ name: DevSecOps Azure IaC Scan
 
 permissions:
   contents: read
+  security-events: write 
+  actions: read
 
 on:
   push:
@@ -24,5 +26,12 @@ jobs:
       - name: Install Checkov
         run: pip install checkov
 
-      - name: Run Checkov Security Scan
-        run: checkov -d .
+      - name: Run Checkov Security Scan (SARIF Output)
+        id: checkov
+        run: checkov -d . --output sarif > checkov-results.sarif
+        continue-on-error: true
+
+      - name: Upload SARIF file to GitHub Security Tab
+        uses: github/codeql-action/upload-sarif@v3
+        with:
+          sarif_file: checkov-results.sarif
